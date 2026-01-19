@@ -1,9 +1,9 @@
 <template>
   <div class="cart-item">
     <div class="item-image">
-      <img :src="item.image" :alt="item.name" v-if="item.image" />
+      <img :src="item.image" :alt="item.name" />
     </div>
-
+    
     <div class="item-details">
       <h4 class="item-name">{{ item.name }}</h4>
       <p class="item-price">{{ formatPrice(item.price) }} / ks</p>
@@ -80,11 +80,20 @@ export default {
   margin-bottom: 15px;
 }
 
-.item-image img {
+.item-image {
   width: 80px;
   height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.item-image img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 6px;
 }
 
 .item-details {
@@ -163,7 +172,7 @@ export default {
     gap: 10px;
   }
 
-  .item-image img {
+  .item-image {
     width: 60px;
     height: 60px;
   }
