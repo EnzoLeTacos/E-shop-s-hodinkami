@@ -1,9 +1,9 @@
 <template>
   <div class="cart-item">
     <div class="item-image">
-      <img :src="getImageUrl(item.image)" :alt="item.name" />
+      <img :src="item.image" :alt="item.name" v-if="item.image" />
     </div>
-    
+
     <div class="item-details">
       <h4 class="item-name">{{ item.name }}</h4>
       <p class="item-price">{{ formatPrice(item.price) }} / ks</p>
@@ -47,14 +47,6 @@ export default {
       this.store.updateQuantity(this.item.id, this.item.quantity + 1)
     },
 
-    getImageUrl(path) {
-      try {
-        return new URL(path, import.meta.url).href
-      } catch {
-        return ''
-      }
-    },
-
     decreaseQuantity() {
       if (this.item.quantity > 1) {
         this.store.updateQuantity(this.item.id, this.item.quantity - 1)
@@ -88,10 +80,11 @@ export default {
   margin-bottom: 15px;
 }
 
-.item-image {
-  font-size: 50px;
+.item-image img {
   width: 80px;
-  text-align: center;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
 }
 
 .item-details {
@@ -170,9 +163,9 @@ export default {
     gap: 10px;
   }
 
-  .item-image {
-    font-size: 40px;
+  .item-image img {
     width: 60px;
+    height: 60px;
   }
 
   .item-total {
