@@ -47,6 +47,14 @@ export default {
       this.store.updateQuantity(this.item.id, this.item.quantity + 1)
     },
 
+    getImageUrl(path) {
+      try {
+        return new URL(path, import.meta.url).href
+      } catch {
+        return ''
+      }
+    },
+
     decreaseQuantity() {
       if (this.item.quantity > 1) {
         this.store.updateQuantity(this.item.id, this.item.quantity - 1)
