@@ -1,6 +1,8 @@
 <template>
   <div class="cart-item">
-    <div class="item-image">{{ item.image }}</div>
+    <div class="item-image">
+      <img :src="getImageUrl(item.image)" :alt="item.name" />
+    </div>
     
     <div class="item-details">
       <h4 class="item-name">{{ item.name }}</h4>
